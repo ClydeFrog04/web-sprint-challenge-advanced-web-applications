@@ -6,9 +6,6 @@ import {BubbleContext} from "../contexts/BubbleContext";
 
 
 interface LoginProps {
-    //loading: boolean;
-    //setLoading: (loading: boolean) =>{};
-    //history: any;
 }
 
 const LoginForm:React.FC<LoginProps> = () => {
@@ -27,7 +24,7 @@ const LoginForm:React.FC<LoginProps> = () => {
             .then(res => {
                 console.log(res);
                 localStorage.setItem("token", res.data.payload);
-                //todo: push to the right page: history.push("/friends");
+                history.push("/bubble");
                 setLoading(false);
             }).catch(err =>{
             console.log("Error logging in: ", err);
