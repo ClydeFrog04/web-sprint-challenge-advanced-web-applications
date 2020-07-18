@@ -11,7 +11,6 @@ const ColorList = () => {
     const [editing, setEditing] = useState(false);
     const [colorToEdit, setColorToEdit] = useState(initialColor);
     const {colorList, setColorList} = useContext(BubbleContext);
-    console.log(colorList);
 
     const editColor = color => {
         setEditing(true);
@@ -26,7 +25,6 @@ const ColorList = () => {
         axiosWithAuth()
             .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
             .then(res =>{
-                console.log("put response: ", res);
                 const newColors = colorList.map(color =>{
                     if(color.id === colorToEdit.id) return colorToEdit;
                     else return color;
@@ -45,7 +43,6 @@ const ColorList = () => {
         axiosWithAuth()
             .delete(`http://localhost:5000/api/colors/${color.id}`)
             .then(res =>{
-                console.log("Delete response: ", res.data);
                 const newColors = colorList.filter(filterColor=> filterColor.id !== color.id);
                 setColorList(newColors);
             })
