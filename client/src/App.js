@@ -1,11 +1,12 @@
-import React, {useState} from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import React from "react";
+import {Route, Switch} from "react-router-dom";
 
 import "./styles.scss";
 import LoginForm from "./components/LoginForm.tsx";
 import PrivateRoute from "./components/PrivateRoute";
 import BubblePage from "./components/BubblePage";
 
+//todo: personal stretch/want: move all state into context
 function App() {
     return (
             <div className="App">
@@ -18,10 +19,3 @@ function App() {
 }
 
 export default App;
-/*
-<Switch>
-                <PrivateRoute exact path="/friends" component={FriendList}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/friends_list" component={FriendsList}/>
-            </Switch>
- */
