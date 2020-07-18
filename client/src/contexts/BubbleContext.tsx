@@ -7,6 +7,7 @@ export const BubbleContext: Context<any> = createContext({});
 export const BubbleProvider: React.FC = ({children}) => {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const [colorList, setColorList] = useState([]);
 
     return (
         <BubbleContext.Provider
@@ -14,6 +15,8 @@ export const BubbleProvider: React.FC = ({children}) => {
                 loading,
                 setLoading,
                 history,
+                colorList,
+                setColorList,
             }}
         >
             {children}

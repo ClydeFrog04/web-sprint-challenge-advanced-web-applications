@@ -1,15 +1,17 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {axiosWithAuth} from "../utils/AxiosWithAuth";
+import {BubbleContext} from "../contexts/BubbleContext";
 
 const initialColor = {
     color: "",
     code: {hex: ""}
 };
 
-const ColorList = ({colors, updateColors}) => {
-    console.log(colors);
+const ColorList = () => {
     const [editing, setEditing] = useState(false);
     const [colorToEdit, setColorToEdit] = useState(initialColor);
+    const {colorList, setColorList} = useContext(BubbleContext);
+    console.log(colorList);
 
     const editColor = color => {
         setEditing(true);
@@ -25,6 +27,12 @@ const ColorList = ({colors, updateColors}) => {
             .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
             .then(res =>{
                 console.log("put response: ", res);
+                const newColors = colorList.map(color =>{
+                    if(color.id === colorToEdit.id) return colorToEdit;
+                    else return color;
+                });
+                setColorList([...newColors]);
+                setEditing(false);
             })
             .catch(err =>{
                 console.log("Error saving color: ", err);
@@ -38,28 +46,19 @@ const ColorList = ({colors, updateColors}) => {
             .delete(`http://localhost:5000/api/colors/${color.id}`)
             .then(res =>{
                 console.log("Delete response: ", res.data);
+                const newColors = colorList.filter(filterColor=> filterColor.id !== color.id);
+                setColorList(newColors);
             })
             .catch(err =>{
                 console.log("Error deleting color: ", err);
             });
     };
-    /*
-    const deleteMovie = (id) =>{
-        axios.delete(`http://localhost:5000/api/movies/${id}`)
-            .then(res =>{
-                console.log("delete res: ", res);
-                history.push("/");
-                getMovieList();
-            })
-            .catch(console.log);
-    }
-    */
 
     return (
         <div className="colors-wrap">
             <p>colors</p>
             <ul>
-                {colors.map(color => (
+                {colorList.map(color => (
                     <li key={color.color}
                         onClick={() => editColor(color)}>{/*this on click is called when a color is clicked*/}
                         <span>

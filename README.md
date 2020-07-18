@@ -27,10 +27,21 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
-1. Explain what a token is used for.
-2. What steps can you take in your web apps to keep your data secure?
-3. Describe how web servers work.
-4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+Explain what a token is used for.
+A token is used to keep track of a user's credentials; one use being to keep a user logged in to a site.
+
+What steps can you take in your web apps to keep your data secure?
+Two steps that come to mind are to build authentication requests to verify a user, and to protect sensitive routes by building private routes in your app. There are of course an endless number of steps one could take to protect data.
+
+
+Describe how web servers work.
+Web servers run on a computer and listen for requests to come in. Once they get a request they respond with whatever output is designated for a given request; e.g. a post request comes in, the server might respond with a status code of 200 and return the new data that includes the posted data.
+
+Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+Create: Post
+Read: Get
+Update: Put
+Delete: Delete
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 
