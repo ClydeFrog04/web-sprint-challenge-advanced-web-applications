@@ -28,6 +28,7 @@ const LoginForm:React.FC<LoginProps> = () => {
                 setLoading(false);
             }).catch(err =>{
             console.log("Error logging in: ", err);
+            setCredentials({username: credentials.username, password: ""});
             setLoading(false);
         });
     }

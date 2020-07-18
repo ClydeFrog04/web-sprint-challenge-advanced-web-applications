@@ -12,7 +12,7 @@ const ColorList = () => {
     const [adding, setAdding] = useState(false);
     const [colorToEdit, setColorToEdit] = useState(initialColor);
     const [colorToAdd, setColorToAdd] = useState(initialColor);
-    const {colorList, setColorList} = useContext(BubbleContext);
+    const {colorList, setColorList, history} = useContext(BubbleContext);
 
     const editColor = color => {
         setEditing(true);
@@ -68,6 +68,12 @@ const ColorList = () => {
             });
     };
 
+    const logout = e => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        history.push("/");
+    }
+
     return (
         <div className="colors-wrap">
             <p>colors</p>
@@ -122,7 +128,7 @@ const ColorList = () => {
                     </div>
                 </form>
             )}
-
+            {/* stretch - build another form here to add a color */}
             {adding ? (
                 <form onSubmit={addColor}>
                     <legend>add color info</legend>
@@ -152,9 +158,13 @@ const ColorList = () => {
                         <button onClick={() => setAdding(false)}>cancel</button>
                     </div>
                 </form>
-            ) : <button onClick={() => {setAdding(true)}}>Add Color</button>}
+            ) : (
+                <>
+                <button onClick={() => {setAdding(true)}}>Add Color</button>
+                <button onClick={logout}>Logout</button>
+                </>
+            )}
             <div className="spacer"/>
-            {/* stretch - build another form here to add a color */}
         </div>
     );
 };
